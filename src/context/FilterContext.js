@@ -1,19 +1,43 @@
 
-import React, { createContext, useContext, useState } from 'react';
+import React, { createContext, useContext,  useEffect, useState } from 'react';
+import dataStr from "../data.json"
 
 const FilterContext = createContext();
 
 export function FilterProvider({ children }) {
   const [selectedFilters, setSelectedFilters] = useState([]);
-  
-  const handleFilterSelection = (filter) => {
-    // Implement your filter selection logic here
-    // Update the selectedFilters state
-  };
+  const [mappedData, setMappedData] = useState(dataStr)
 
+  useEffect(() => {
+    console.log(selectedFilters);
+  }, [selectedFilters]);
+
+  const handleFilterAdd = (tag) => {
+    setSelectedFilters(prevFilters => {
+      if (!prevFilters.includes(tag)) {
+        return [...prevFilters, tag];
+      }
+      return prevFilters;
+    });
+  }
+  
+  const handleFilterDel = (tag) => {
+    setSelectedFilters(currFilters => {
+      const updatedFilters = currFilters.filter(tags => tags !== tag);
+      return updatedFilters;
+    });
+  }
+  
+   const handleFilterClr = () => {
+    return setSelectedFilters([]);
+   }
+  
+  
   const contextValue = {
     selectedFilters,
-    handleFilterSelection,
+    handleFilterAdd,
+    handleFilterDel,
+    handleFilterClr
   };
 
   return (

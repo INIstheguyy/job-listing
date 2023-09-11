@@ -1,4 +1,5 @@
 import React from 'react';
+import { useFilterContext } from '../context/FilterContext';
 
 function JobTemplate({
     logo,
@@ -14,6 +15,7 @@ function JobTemplate({
     neew,
     featured,
 }) {
+    const { handleFilterAdd, handleFilterDel } = useFilterContext();
   return (
     <div className="job-wrapper w-full mx-auto md:w-10/12 text-md p-5">
       <div className="job-template  p-5 shadow-lg relative bg-white rounded-md m-5 md:flex justify-between">
@@ -29,19 +31,21 @@ function JobTemplate({
             <div className="">
               <p className="position font-bold text-black ">{position}</p>
             </div>
-            <div className="flex text-gray-400 py-2 justify-between  ">
-              <p className="posted-at">{postedAt}</p>
-              <p className="contract px-2">{contract}</p>
-              <p className="location px-2">{location}</p>
+            <div className="inline text-gray-400 py-2 justify-between  ">
+              <p className="posted-at inline">{postedAt}</p>
+              <p className="contract px-2 inline">{contract}</p>
+              <p className="location px-2 inline">{location}</p>
             </div>
           </div>
         </div>
         <hr className="my-2 border-b-2 text-black block md:hidden" />
         <div className="lower-template flex-shrink md:inline my-3 md:my-0">
-          <p className="role font-medium inline p-1 mx-2 rounded-sm cursor-pointer text-color4 bg-color3">
+          <p className="role font-medium inline p-1 mx-2 rounded-sm cursor-pointer text-color4 bg-color3"
+          onClick={() => handleFilterAdd(role)} onDoubleClick={() => handleFilterDel(role)}>
             {role}
           </p>
-          <p className="level font-medium inline p-1 mx-2 rounded-sm cursor-pointer text-color4 bg-color3">
+          <p className="level font-medium inline p-1 mx-2 rounded-sm cursor-pointer text-color4 bg-color3"
+          onClick={() => handleFilterAdd(level)} onDoubleClick={() => handleFilterDel(level)}>
             {level}
           </p>
           <div className="languages md:inline my-3 md:my-0">
@@ -49,6 +53,7 @@ function JobTemplate({
               <p
                 key={index} 
                 className="language font-medium cursor-pointer inline text-color4 bg-color3 p-1 mx-2 rounded-sm"
+                onClick={() => handleFilterAdd(language)} onDoubleClick={() => handleFilterDel(language)}
               >
                 {language}
               </p>
@@ -59,6 +64,7 @@ function JobTemplate({
               <p
                 key={index} 
                 className="font-medium inline text-color4 p-1 cursor-pointer bg-color3 mx-2 rounded-sm"
+                onClick={() => handleFilterAdd(tool)} onDoubleClick={() => handleFilterDel(tool)}
               >
                 {tool}
               </p>
