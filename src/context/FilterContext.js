@@ -1,12 +1,11 @@
 
 import React, { createContext, useContext,  useEffect, useState } from 'react';
-import dataStr from "../data.json"
+
 
 const FilterContext = createContext();
 
 export function FilterProvider({ children }) {
   const [selectedFilters, setSelectedFilters] = useState([]);
-  const [mappedData, setMappedData] = useState(dataStr)
 
   useEffect(() => {
     console.log(selectedFilters);
