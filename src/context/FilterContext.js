@@ -1,8 +1,8 @@
+import React, { createContext, useContext, useEffect, useState } from "react";
 
-import React, { createContext, useContext,  useEffect, useState } from 'react';
+import data from "../data.json";
 
-
-const FilterContext = createContext();
+export const FilterContext = createContext();
 
 export function FilterProvider({ children }) {
   const [selectedFilters, setSelectedFilters] = useState([]);
@@ -12,31 +12,32 @@ export function FilterProvider({ children }) {
   }, [selectedFilters]);
 
   const handleFilterAdd = (tag) => {
-    setSelectedFilters(prevFilters => {
-      if (!prevFilters.includes(tag)) {
-        return [...prevFilters, tag];
-      }
-      return prevFilters;
-    });
-  }
-  
+    // { name: "role", value: "frontend" }
+
+    const existing = selectedFilters.findIndex((filter) => filter[tag.name]);
+
+    if (existing !== -1) {
+      return;
+    }
+
+    setSelectedFilters([...selectedFilters, tag]);
+  };
+
   const handleFilterDel = (tag) => {
-    setSelectedFilters(currFilters => {
-      const updatedFilters = currFilters.filter(tags => tags !== tag);
-      return updatedFilters;
-    });
-  }
-  
-   const handleFilterClr = () => {
+    setSelectedFilters(
+      selectedFilters.filter((existingTag) => existingTag.name !== tag.name)
+    );
+  };
+
+  const handleFilterClr = () => {
     return setSelectedFilters([]);
-   }
-  
-  
+  };
+
   const contextValue = {
     selectedFilters,
     handleFilterAdd,
     handleFilterDel,
-    handleFilterClr
+    handleFilterClr,
   };
 
   return (

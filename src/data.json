@@ -12,7 +12,7 @@
     "contract": "Full Time",
     "location": "USA Only",
     "languages": ["HTML", "CSS", "JavaScript"],
-    "tools": []
+    "tools": ["React"]
   },
   {
     "id": 2,
@@ -21,7 +21,7 @@
     "new": true,
     "featured": true,
     "position": "Fullstack Developer",
-    "role": "Fullstack",
+    "role": "Frontend",
     "level": "Midweight",
     "postedAt": "1d ago",
     "contract": "Part Time",
@@ -42,7 +42,7 @@
     "contract": "Part Time",
     "location": "USA Only",
     "languages": ["JavaScript"],
-    "tools": ["React", "Sass"]
+    "tools": ["Sass"]
   },
   {
     "id": 4,
@@ -147,6 +147,6 @@
     "contract": "Part Time",
     "location": "Worldwide",
     "languages": ["JavaScript"],
-    "tools": ["React", "Sass"]
+    "tools": ["Sass"]
   }
 ]
